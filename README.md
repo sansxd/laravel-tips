@@ -1,20 +1,21 @@
 # Laravel Tips
 
-Awesome Laravel tips and tricks for all artisans. PR and ideas are welcome!  
-An idea by [PovilasKorop](https://github.com/PovilasKorop) and [MarceauKa](https://github.com/MarceauKa).
+Impresionantes tips y trucos de Laravel para todos los artesanos. !Los PR y las ideas son bienvenidas!
 
-Hey, like these tips? Also check out my premium [Laravel courses](https://laraveldaily.teachable.com/)
+Una idea creada por [PovilasKorop](https://github.com/PovilasKorop) y [MarceauKa](https://github.com/MarceauKa).
+
+Hey, ¿te gustan estos tips? puedes hechar un vistazo a [Laravel courses](https://laraveldaily.teachable.com/)
 
 ---
 
-Or you want the chinese version:
+Oh si nesecitas la version en chino:
 [中文版本](https://github.com/Lysice/laravel-tips-chinese/blob/master/README-zh.md)
 
 ---
 
-__Update 26 November 2021__: Currently there are __207 tips__ divided into 14 sections.
+__Actualizado el 26 de Noviembre del 2021__: Actualmente hay __207 tips__ dividos entre 14 secciones.
 
-## Table of Contents
+## Tabla De Contenido
 
 - [DB Models and Eloquent](#db-models-and-eloquent) (56 tips)
 - [Models Relations](#models-relations) (30 tips)
@@ -138,7 +139,7 @@ $products = Product::whereTime('created_at', '=', '14:13:58')->get();
 
 ### Increments and decrements
 
-If you want to increment some DB column in some table, just use `increment()` function. Oh, and you can increment not only by 1, but also by some number, like 50.
+Si quieres incrementar alguna DB columna en alguna tabla, solo usa la funcion `increment()`. Y no solamente puedes incrementar por 1, si no por cualquier numero, como por ejemplo 50.
 
 ```php
 Post::find($post_id)->increment('view_count');
@@ -147,7 +148,8 @@ User::find($user_id)->increment('points', 50);
 
 ### No timestamp columns
 
-If your DB table doesn't contain timestamp fields `created_at` and `updated_at`, you can specify that Eloquent model wouldn't use them, with `$timestamps = false` property.
+Si la tabla de tu DB no contiene campos timestamp como `created_at` y `updated_at`, puedes especificar al modelo Eloquent que no los use 
+con la propiedad `$timestamps = false`.
 
 ```php
 class Company extends Model
@@ -158,7 +160,7 @@ class Company extends Model
 
 ### Soft-deletes: multiple restore
 
-When using soft-deletes, you can restore multiple rows in one sentence.
+Cuando usas soft-deletes puedes restaurar multiples filas en una sentencia.
 
 ```php
 Post::onlyTrashed()->where('author_id', 1)->restore();
@@ -166,7 +168,7 @@ Post::onlyTrashed()->where('author_id', 1)->restore();
 
 ### Model all: columns
 
-When calling Eloquent's `Model::all()`, you can specify which columns to return.
+Cuando llamamos a `Model::all()` de Eloquent podemos especificar que columnas retornar.
 
 ```php
 $users = User::all(['id', 'name', 'email']);
@@ -182,7 +184,7 @@ $user = User::where('email', 'povilas@laraveldaily.com')->firstOrFail();
 
 ### Column name change
 
-In Eloquent Query Builder, you can specify "as" to return any column with a different name, just like in plain SQL query.
+En el Query Builder de Eloquent puedes especificar "as" para retornar cualquier columna con un nombre diferente, al igual que una consulta SQL simple.
 
 ```php
 $users = DB::table('users')->select('name', 'email as user_email')->get();
