@@ -192,7 +192,7 @@ $users = DB::table('users')->select('name', 'email as user_email')->get();
 
 ### Map query results
 
-After Eloquent query you can modify rows by using `map()` function in Collections.
+Despues de una consulta Eloquent se pueden modificar las filas usando la funcion `map()` en Collections.
 
 ```php
 $users = User::where('role_id', 1)->get()->map(function (User $user) {
@@ -203,7 +203,7 @@ $users = User::where('role_id', 1)->get()->map(function (User $user) {
 
 ### Change Default Timestamp Fields
 
-What if you’re working with non-Laravel database and your timestamp columns are named differently? Maybe, you have create_time and update_time. Luckily, you can specify them in the model, too:
+¿Qué sucede si está trabajando con una base de datos que no es de Laravel y sus columnas de timestap tienen un nombre diferente? talvez sean create_time y update_time. Afortunadamente tambien se pueden especificar en el modelo:
 
 ```php
 class Role extends Model
@@ -215,24 +215,24 @@ class Role extends Model
 
 ### Quick Order by created_at
 
-Instead of:
+En lugar de:
 ```php
 User::orderBy('created_at', 'desc')->get();
 ```
 
-You can do it quicker:
+Puedes usar:
 ```php
 User::latest()->get();
 ```
 
-By default, `latest()` will order by `created_at`.
+Por defecto el metodo `latest()` ordenara por `created_at`.
 
-There is an opposite method `oldest()` which would order by `created_at` ascending:
+Existe un metodo opuesto `oldest()` el cual ordenara por `created_at` ascendente:
 ```php
 User::oldest()->get();
 ```
 
-Also, you can specify another column to order by. For example, if you want to use `updated_at`, you can do this:
+Ademas puedes especificar otra columna para ordenar. Por ejemplo, si quieres usar `updated_at` puedes hacer esto:
 ```php
 $lastUpdatedUser = User::latest('updated_at')->first();
 ```
@@ -267,7 +267,7 @@ User::where('active', 1)
 
 ### More than One Scope
 
-You can combine and chain Query Scopes in Eloquent, using more than one scope in a query.
+Puedes combinar y encandenar consultas Scopes en Eloquent, usando mas de un scope en una consulta.
 
 Model:
 ```php
