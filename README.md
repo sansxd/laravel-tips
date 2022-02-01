@@ -95,9 +95,8 @@ __Actualizado el 26 de Noviembre del 2021__: Actualmente hay __207 tips__ divido
 
 ### Reuse or clone query()
 
-Typically, we need to query multiple time from a filtered query. So, most of the time we use `query()` method,
-
-let's write a query for getting today created active and inactive products
+Generalmente nesecitamos consultar varias veces desde una consulta filtrada. La mayoria del tiempo usamos el metodo `query()`,
+escribamos una consulta para obtener los productos activos y inactivos creados hoy dia. 
 
 ```php
 
@@ -109,15 +108,16 @@ if($today){
     $query->where('created_at', $today);
 }
 
-// lets get active and inactive products
-$active_products = $query->where('status', 1)->get(); // this line modified the $query object variable
-$inactive_products = $query->where('status', 0)->get(); // so here we will not find any inactive products
+// obtener productos activos e inactivos
+$active_products = $query->where('status', 1)->get(); // esta linea modifica la variable de objeto $query
+$inactive_products = $query->where('status', 0)->get(); // por lo que aqui no encontraremos ningun producto inactivo
 ```
 
-But, after getting `$active products` the` $query `will be modified. So, `$inactive_products` will not find any inactive products from `$query`  and that will return blank collection every time. Cause, that will try to find inactive products from `$active_products` (`$query` will return active products only).
+Pero, despues de obtener `$active_products` la variable `$query` se modificara. Entonces `$inactive_products` no podra encontrar ningun producto inactivo de `$query` y cada vez devolvera una Collection en blanco. La causa, esta tratando de encontrar productos inactivos desde `$active_products` (`$query` solo devolvera productos activos)
 
-For solve this issue, we can query multiple time by reusing this `$query` object.
-So, We need to clone this `$query` before doing any `$query` modification action.
+
+Para resolver este problema, podemos consultar varias veces reutilizando el objeto `$query`.
+Por lo tanto, necesitamos clonar esta `$query` antes de realizar cualquier acción de modificación en `$query`.
 
 ```php
 $active_products = (clone $query)->where('status', 1)->get(); // it will not modify the $query
